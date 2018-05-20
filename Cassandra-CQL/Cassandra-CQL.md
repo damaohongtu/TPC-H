@@ -25,3 +25,37 @@ cqlsh:tutorialspoint>; CREATE TABLE emp(
 # 查询
 cqlsh:tutorialspoint> select * from emp;
 ```
+
+
+## 建表并加载数据
+customer.tbl
+```
+```
+---
+lineitem.tbl
+```
+```
+---
+nation.tbl
+```
+```
+---
+orders.tbl
+```
+```
+---
+partsupp.tbl
+```
+```
+---
+part.tbl
+```
+```
+---
+region.tbl
+```
+```
+---
+supplier.tbl
+```
+```
