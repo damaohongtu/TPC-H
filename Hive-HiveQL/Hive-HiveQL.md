@@ -2,86 +2,44 @@
 
 ## 建表并加载数据
 ```
-CREATE TABLE NATION  ( N_NATIONKEY  INTEGER NOT NULL,
-                            N_NAME       CHAR(25) NOT NULL,
-                            N_REGIONKEY  INTEGER NOT NULL,
-                            N_COMMENT    VARCHAR(152));
+CREATE DATABASE tpch;
+USE tpch;
+Create external table lineitem (L_ORDERKEY INT, L_PARTKEY INT,L_SUPPKEY INT,L_LINENUMBER INT,L_QUANTITY DOUBLE,L_EXTENDEDPRICE DOUBLE,L_DISCOUNT DOUBLE,L_TAX DOUBLE,L_RETURNFLAG STRING,L_LINESTATUS STRING,L_SHIPDATE STRING,L_COMMITDATE STRING,L_RECEIPTDATE STRING,L_SHIPINSTRUCT STRING,L_SHIPMODE STRING,L_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/lineitem';
+
+Create external table nation (N_NATIONKEY INT,N_NAME STRING,N_REGIONKEY INT,N_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/nation';
+
+Create external table region (R_REGIONKEY INT,R_NAME STRING,R_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/region';
+
+Create external table part (P_PARTKEY INT , P_NAME STRING , P_MFGR STRING, P_BRAND  STRING, P_TYPE STRING , P_SIZE INT , P_CONTAINER  STRING, P_RETAILPRICE DOUBLE, P_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/part';
+
+Create external table supplier (S_SUPPKEY INT , S_NAME STRING ,S_ADDRESS STRING , S_NATIONKEY  INT , S_PHONE  STRING, S_ACCTBAL DOUBLE, S_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/supplier';
+
+Create external table partsupp (PS_PARTKEY INT , PS_SUPPKEY INT , PS_AVAILQTY INT , PS_SUPPLYCOST DOUBLE, PS_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/partsupp';
+
+Create external table customer (C_CUSTKEY INT , C_NAME STRING , C_ADDRESS STRING , C_NATIONKEY  INT , C_PHONE  STRING , C_ACCTBAL DOUBLE , C_MKTSEGMENT STRING , C_COMMENT STRING ) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/customer';
+
+Create external table orders (O_ORDERKEY INT , O_CUSTKEY INT ,O_ORDERSTATUS STRING,O_TOTALPRICE DOUBLE, O_ORDERDATE DATE , O_ORDERPRIORITY STRING, O_CLERK  STRING,  O_SHIPPRIORITY  INT ,  O_COMMENT STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/tpch/orders';
 ```
 
-```
-CREATE TABLE REGION  ( R_REGIONKEY  INTEGER NOT NULL,
-                            R_NAME       CHAR(25) NOT NULL,
-                            R_COMMENT    VARCHAR(152));
-```
+加载数据
 
 ```
-CREATE TABLE PART  ( P_PARTKEY     INTEGER NOT NULL,
-                          P_NAME        VARCHAR(55) NOT NULL,
-                          P_MFGR        CHAR(25) NOT NULL,
-                          P_BRAND       CHAR(10) NOT NULL,
-                          P_TYPE        VARCHAR(25) NOT NULL,
-                          P_SIZE        INTEGER NOT NULL,
-                          P_CONTAINER   CHAR(10) NOT NULL,
-                          P_RETAILPRICE DECIMAL(15,2) NOT NULL,
-                          P_COMMENT     VARCHAR(23) NOT NULL );
+USE tpch;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/region.tbl' INTO TABLE region;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/nation.tbl' INTO TABLE nation;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/part.tbl'   INTO TABLE part;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/supplier.tbl' INTO TABLE supplier;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/partsupp.tbl' INTO TABLE partsupp;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/customer.tbl' INTO TABLE customer;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/orders.tbl' INTO TABLE orders;
+LOAD DATA LOCAL INPATH '/home/mao/tpch_workplace/tpc_h_tool/dbgen/lineitem.tbl' INTO TABLE lineitem;
 ```
 
-```
-CREATE TABLE SUPPLIER ( S_SUPPKEY     INTEGER NOT NULL,
-                             S_NAME        CHAR(25) NOT NULL,
-                             S_ADDRESS     VARCHAR(40) NOT NULL,
-                             S_NATIONKEY   INTEGER NOT NULL,
-                             S_PHONE       CHAR(15) NOT NULL,
-                             S_ACCTBAL     DECIMAL(15,2) NOT NULL,
-                             S_COMMENT     VARCHAR(101) NOT NULL);
-```
+
 
 ```
-CREATE TABLE PARTSUPP ( PS_PARTKEY     INTEGER NOT NULL,
-                             PS_SUPPKEY     INTEGER NOT NULL,
-                             PS_AVAILQTY    INTEGER NOT NULL,
-                             PS_SUPPLYCOST  DECIMAL(15,2)  NOT NULL,
-                             PS_COMMENT     VARCHAR(199) NOT NULL );
-```
-
-```
-CREATE TABLE CUSTOMER ( C_CUSTKEY     INTEGER NOT NULL,
-                             C_NAME        VARCHAR(25) NOT NULL,
-                             C_ADDRESS     VARCHAR(40) NOT NULL,
-                             C_NATIONKEY   INTEGER NOT NULL,
-                             C_PHONE       CHAR(15) NOT NULL,
-                             C_ACCTBAL     DECIMAL(15,2)   NOT NULL,
-                             C_MKTSEGMENT  CHAR(10) NOT NULL,
-                             C_COMMENT     VARCHAR(117) NOT NULL);
-```
-
-```
-CREATE TABLE ORDERS  ( O_ORDERKEY       INTEGER NOT NULL,
-                           O_CUSTKEY        INTEGER NOT NULL,
-                           O_ORDERSTATUS    CHAR(1) NOT NULL,
-                           O_TOTALPRICE     DECIMAL(15,2) NOT NULL,
-                           O_ORDERDATE      DATE NOT NULL,
-                           O_ORDERPRIORITY  CHAR(15) NOT NULL,  
-                           O_CLERK          CHAR(15) NOT NULL, 
-                           O_SHIPPRIORITY   INTEGER NOT NULL,
-                           O_COMMENT        VARCHAR(79) NOT NULL);
-```
-
-```
-CREATE TABLE LINEITEM ( L_ORDERKEY    INTEGER NOT NULL,
-                             L_PARTKEY     INTEGER NOT NULL,
-                             L_SUPPKEY     INTEGER NOT NULL,
-                             L_LINENUMBER  INTEGER NOT NULL,
-                             L_QUANTITY    DECIMAL(15,2) NOT NULL,
-                             L_EXTENDEDPRICE  DECIMAL(15,2) NOT NULL,
-                             L_DISCOUNT    DECIMAL(15,2) NOT NULL,
-                             L_TAX         DECIMAL(15,2) NOT NULL,
-                             L_RETURNFLAG  CHAR(1) NOT NULL,
-                             L_LINESTATUS  CHAR(1) NOT NULL,
-                             L_SHIPDATE    DATE NOT NULL,
-                             L_COMMITDATE  DATE NOT NULL,
-                             L_RECEIPTDATE DATE NOT NULL,
-                             L_SHIPINSTRUCT CHAR(25) NOT NULL,
-                             L_SHIPMODE     CHAR(10) NOT NULL,
-                             L_COMMENT      VARCHAR(44) NOT NULL);
+-- 显式完整的表信息
+desc formatted lineitem;
+-- 显式表头
+set hive.cli.print.header=true;
 ```
