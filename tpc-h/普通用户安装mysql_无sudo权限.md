@@ -27,7 +27,7 @@ cmake -D MYSQL_DATADIR=$HOME/MySQL/data -D SYSCONFDIR=$HOME/MySQL/etc -D CMAKE_I
 make
 make install
 ```
-![](pictures/mysql_tree.png)
+![](../pictures/mysql_tree.png)
 
 - 修改配置文件etc/my.cnf(关键所在)
 ```

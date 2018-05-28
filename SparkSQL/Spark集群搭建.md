@@ -21,8 +21,8 @@ export SPARK_WORKER_CORES=8
 $SPARK_HOME/sbin/start-all.sh
 ```
 master：
-![](pictures/spark-master.png)<br>
+![](../pictures/spark-master.png)<br>
 worker：
-![](pictures/spark-worker.png)<br>
-![](pictures/spark-master-ui.png)<br>
-![](pictures/spark-worker-ui.png)
+![](../pictures/spark-worker.png)<br>
+![](../pictures/spark-master-ui.png)<br>
+![](../pictures/spark-worker-ui.png)
