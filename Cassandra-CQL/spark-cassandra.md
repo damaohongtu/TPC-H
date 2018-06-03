@@ -45,7 +45,7 @@ object CassandraLoadData {
 ```
 
 ## 3.使用maven打包
-## 4.向集群提交：
+## 4.向集群提交(<a href="Cassandra-CQL.md">提前在cassandra中新建KEYSPACE和表格</a>)：
 ```
 spark-submit  --name "Cassandra Load Data" --class com.mao.CassandraLoadData --jars "/home/user31/spark-cassandra-connector_2.11-2.3.0.jar,/home/user31/jsr166e-1.1.0.jar" /home/user31/SparkExamples-1.0-SNAPSHOT.jar "spark://host4:7077" "hdfs://192.168.5.29:9000/user"
 ```
