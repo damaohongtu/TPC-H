@@ -43,7 +43,7 @@ object CassandraLoadData {
   }
 }
 ```
-## 向集群提交：
+## 3.向集群提交：
 ```
 spark-submit  --name "Cassandra Load Data" --class com.mao.CassandraLoadData --jars "/home/user31/spark-cassandra-connector_2.11-2.3.0.jar,/home/user31/jsr166e-1.1.0.jar" /home/user31/SparkExamples-1.0-SNAPSHOT.jar "spark://host4:7077" "hdfs://192.168.5.29:9000/user"
 ```
