@@ -27,7 +27,7 @@ and MASTER specifies the spark-mode e.g local, yarn, standalone etc...
 
 2. when <num> = 0, all queries (22 queries) will be excute
 
-3. input_data_dir could be local dir eg: file:///home/data, and could be hdfs direg: hdfs://ip:9000/data
+3. input_data_dir could be local dir, eg: file:///home/data, and could be hdfs dir, eg: hdfs://ip:9000/data
 
 4. the result of excuting query will be saved in output_result_dir, and the time of excuting every query will also be save in output_result_dir's TIMES.txt
 
