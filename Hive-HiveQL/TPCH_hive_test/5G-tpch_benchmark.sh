@@ -22,7 +22,7 @@ HIVE_CMD="$HIVE_HOME/bin/hive"
 # hive all benchmark queries
 
 HIVE_TPCH_QUERIES_ALL=( \
-        "tpch-5G/q1_pricing_summary_report.hive" \
+        	"tpch-5G/q1_pricing_summary_report.hive" \
 		"tpch-5G/q2_minimum_cost_supplier.hive" \
 		"tpch-5G/q3_shipping_priority.hive" \
 		"tpch-5G/q4_order_priority.hive" \
