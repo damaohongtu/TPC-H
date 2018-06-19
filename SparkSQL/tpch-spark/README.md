@@ -19,7 +19,7 @@ find spark-tpc-h-queries_2.11-2.0.jar in the dir=>target/scala-2.11
 You can then run a query using:
 
 ```
-spark-submit --class "main.scala.TpchQuery" --master MASTER target/scala-2.11/spark-tpc-h-queries_2.11-1.0.jar <num> <input_data_dir> <output_result_dir>
+spark-submit --class "main.scala.TpchQuery" --master spark://host4:7077 target/scala-2.11/spark-tpc-h-queries_2.11-1.0.jar <num> <input_data_dir> <output_result_dir>
 ```
 
 1. where <num> is the number of the query to run e.g 1, 2, ..., 22
