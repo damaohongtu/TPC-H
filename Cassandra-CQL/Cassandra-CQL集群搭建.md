@@ -55,3 +55,25 @@ $CASSANDRA_HOME/bin/cassandra
 nodetool status
 ```
 ![](../pictures/cassandra_cluster.png)
+
+# 修改端口
+```
+$CASSANDRA_HOME/conf/cassandra-env.sh  :修改7199端口
+$CASSANDRA_HOME/bin/cassandra.bat  7199
+
+
+$CASSANDRA_HOME/conf/cassandra.yaml 
+
+storage_port: 7101  7000
+ssl_storage_port: 7102   7001
+rpc_port: 9161  9160
+
+
+```
+
+查看端口：lsof -i 7000
+
+
+
+
+
